@@ -1,0 +1,60 @@
+
+erDiagram
+    DEPARTMENTS ||--o{ EMPLOYEES : has
+    CATEGORIES ||--o{ ASSETS : classifies
+    LOCATIONS ||--o{ ASSETS : contains
+    VENDORS ||--o{ ASSETS : supplies
+    EMPLOYEES ||--o{ ALLOCATIONS : receives
+    ASSETS ||--o{ ALLOCATIONS : assigned_through
+    ASSETS ||--o{ MAINTENANCE : undergoes
+
+    DEPARTMENTS {
+        int DepartmentID PK
+        string DepartmentName
+    }
+
+    EMPLOYEES {
+        int EmployeeID PK
+        int DepartmentID FK
+        string EmployeeName
+        string Email
+    }
+
+    CATEGORIES {
+        int CategoryID PK
+        string CategoryName
+    }
+
+    LOCATIONS {
+        int LocationID PK
+        string LocationName
+    }
+
+    VENDORS {
+        int VendorID PK
+        string VendorName
+    }
+
+    ASSETS {
+        int AssetID PK
+        int CategoryID FK
+        int LocationID FK
+        int VendorID FK
+        string AssetName
+        string AssetStatus
+    }
+
+    ALLOCATIONS {
+        int AllocationID PK
+        int EmployeeID FK
+        int AssetID FK
+        date AllocationDate
+        date ReturnDate
+    }
+
+    MAINTENANCE {
+        int MaintenanceID PK
+        int AssetID FK
+        date MaintenanceDate
+        string Description
+    }
